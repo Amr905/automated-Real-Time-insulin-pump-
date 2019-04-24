@@ -1,14 +1,14 @@
 package event;
 
 public class SystemTesterEvent {
-	private String SystemStatus;
+	private String systemstatus;
 
-	public SystemTesterEvent(String systemStatus) {
-		SystemStatus = systemStatus;
+	public SystemTesterEvent(String systemstatus) {
+		this.systemstatus = systemstatus;
 	}
 
 	public String getSystemStatus() {
-		return SystemStatus;
+		return systemstatus;
 	}
 
 }

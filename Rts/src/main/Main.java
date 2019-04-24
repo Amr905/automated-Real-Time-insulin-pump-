@@ -18,7 +18,6 @@ public class Main {
 
 		// Register events
 		Config.registerEvents();
-		
 		final HumanBody humanBody = new HumanBody();
 		Thread humanBodyThread = new Thread(humanBody);
 		humanBodyThread.start();
@@ -35,11 +34,13 @@ public class Main {
 				insulinPumpSystem.addSugerMeasure(SugarLevel);
 			}
 		});
-		Config.createStatement("select SystemStatus from FlowSensorEvent").setSubscriber(new Object() {
-			public void update(String SystemStatus) throws InterruptedException {
-				insulinPumpSystem.checkSystemSatus(SystemStatus);
+		Config.createStatement("select systemStatus from SystemTesterEvent").setSubscriber(new Object() {
+			public void update(String systemstatus) throws InterruptedException {
+				insulinPumpSystem.checkSystemSatus(systemstatus);
 			}
 		});
+
+		
 		
 		
 

@@ -20,7 +20,7 @@ public class InsulinPumpSystem {
 	private int computedDose;
 	private float currentRate;
 	private int rateDirection;// -1 decr , 1 inc
-
+	private InsulinPumper insulinPumper;
 	public InsulinPumpSystem(HumanBody humanBody) {
 		this.clock = new Clock();
 		this.MyDisplay = new Display();
@@ -35,6 +35,7 @@ public class InsulinPumpSystem {
 		computedDose = 0;
 		currentRate = 0;
 		rateDirection = 0;
+		insulinPumper= new InsulinPumper(humanBody);
 	}
 
 	public void Timer(LocalTime time) {
@@ -50,9 +51,10 @@ public class InsulinPumpSystem {
 			Config.sendEvent(new DisplayMsgEvent("ERROR CLOSING"));
 			// Stop();
 		}
-		
-		 else { Config.sendEvent(new DisplayMsgEvent("System Working")); }
-		 
+
+		else {
+			Config.sendEvent(new DisplayMsgEvent("System Working"));
+		}
 
 	}
 
@@ -61,7 +63,7 @@ public class InsulinPumpSystem {
 				&& sugerReading[ReadingIndex] <= safeMax && rateDirection == 0)) {
 			int dose = computeDose();
 			computedDose += dose;
-			// insluin pump please
+			insulinPumper.pumpInsulin(dose);
 		}
 
 	}

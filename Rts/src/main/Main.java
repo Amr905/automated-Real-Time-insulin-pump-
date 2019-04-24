@@ -40,11 +40,11 @@ public class Main {
 				insulinPumpSystem.checkSystemSatus(systemstatus);
 			}
 		});
-		/*Config.createStatement("select msg from DisplayEvent").setSubscriber(new Object() {
+		Config.createStatement("select msg from DisplayMsgEvent").setSubscriber(new Object() {
 			public void update(String msg) throws InterruptedException {
 				insulinPumpSystem.SystemError(msg);
 			}
-		});*/
+		});
 
 		
 		

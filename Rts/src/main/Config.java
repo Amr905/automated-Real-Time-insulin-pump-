@@ -14,6 +14,7 @@ public class Config {
 		engine.getEPAdministrator().getConfiguration().addEventType(DisplayClockEvent.class);
 		engine.getEPAdministrator().getConfiguration().addEventType(SugarMeasurementEvent.class);
 		 engine.getEPAdministrator().getConfiguration().addEventType(SystemTesterEvent.class);
+		 engine.getEPAdministrator().getConfiguration().addEventType(DisplayMsgEvent.class); 
 		/*
 		 * 
 		 * engine.getEPAdministrator().getConfiguration().addEventType(PumpEvent.class); 

@@ -2,7 +2,7 @@ package model;
 
 import java.time.LocalTime;
 
-import event.DisplayClockEvent;
+import event.*;
 import main.Config;
 
 public class InsulinPumpSystem {
@@ -47,12 +47,12 @@ public class InsulinPumpSystem {
 
 	public void checkSystemSatus(String status) {
 		if (!status.equals("OK")) {
-			Config.sendEvent(new DisplayClockEvent("ERROR CLOSING"));
+			Config.sendEvent(new DisplayMsgEvent("ERROR CLOSING"));
 			// Stop();
 		}
-		/*
-		 * else { Config.sendEvent(new DisplayEvent("System Working")); }
-		 */
+		
+		 else { Config.sendEvent(new DisplayMsgEvent("System Working")); }
+		 
 
 	}
 

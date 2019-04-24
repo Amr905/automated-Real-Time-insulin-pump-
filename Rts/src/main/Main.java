@@ -23,8 +23,9 @@ public class Main {
 		humanBodyThread.start();
 		final InsulinPumpSystem insulinPumpSystem = new InsulinPumpSystem(humanBody);
 		
-		Config.createStatement("select clock from DisplayEvent").setSubscriber(new Object() {
+		Config.createStatement("select clock from DisplayClockEvent").setSubscriber(new Object() {
 			public void update(LocalTime clock) throws InterruptedException {
+				//System.out.println("Clock-->"+clock);
 				insulinPumpSystem.Timer(clock);
 			}
 		});
@@ -39,6 +40,11 @@ public class Main {
 				insulinPumpSystem.checkSystemSatus(systemstatus);
 			}
 		});
+		/*Config.createStatement("select msg from DisplayEvent").setSubscriber(new Object() {
+			public void update(String msg) throws InterruptedException {
+				insulinPumpSystem.SystemError(msg);
+			}
+		});*/
 
 		
 		

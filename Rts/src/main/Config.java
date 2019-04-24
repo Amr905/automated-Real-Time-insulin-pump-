@@ -11,7 +11,7 @@ public class Config {
 	private static EPServiceProvider engine = EPServiceProviderManager.getDefaultProvider();
 
 	public static void registerEvents() {
-		engine.getEPAdministrator().getConfiguration().addEventType(DisplayEvent.class);
+		engine.getEPAdministrator().getConfiguration().addEventType(DisplayClockEvent.class);
 		engine.getEPAdministrator().getConfiguration().addEventType(SugarMeasurementEvent.class);
 		 engine.getEPAdministrator().getConfiguration().addEventType(SystemTesterEvent.class);
 		/*

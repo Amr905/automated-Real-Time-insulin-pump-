@@ -2,16 +2,16 @@ package event;
 
 import java.time.LocalTime;
 
-public class DisplayEvent {
+public class DisplayClockEvent {
 	private LocalTime clock;
-	private String Msg;
+	private String msg;
 
-	public DisplayEvent(LocalTime clock) {
+	public DisplayClockEvent(LocalTime clock) {
 		this.clock = clock;
 	}
 
-	public DisplayEvent(String msg) {
-		this.Msg = msg;
+	public DisplayClockEvent(String msg) {
+		this.msg = msg;
 	}
 
 	public LocalTime getClock() {
@@ -19,7 +19,7 @@ public class DisplayEvent {
 	}
 
 	public String getMsg() {
-		return Msg;
+		return msg;
 	}
 
 }

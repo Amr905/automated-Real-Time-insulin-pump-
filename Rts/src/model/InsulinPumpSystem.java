@@ -68,6 +68,7 @@ public class InsulinPumpSystem {
 
 	}
 
+	
 	private void calcRate() {
 		int rate1 = sugerReading[2] - sugerReading[1];
 		int rate2 = sugerReading[1] - sugerReading[0];
@@ -88,6 +89,7 @@ public class InsulinPumpSystem {
 		if (computedDose + dose > maxDailyDose)
 			dose = maxDailyDose - computedDose;
 
+		System.out.println("Dose injected-->"+dose);
 		return dose;
 
 	}

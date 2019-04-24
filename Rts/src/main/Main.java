@@ -29,7 +29,6 @@ public class Main {
 				insulinPumpSystem.Timer(clock);
 			}
 		});
-
 		Config.createStatement("select sugarLevel from SugarMeasurementEvent").setSubscriber(new Object() {
 			public void update(int SugarLevel) throws InterruptedException {
 				insulinPumpSystem.addSugerMeasure(SugarLevel);
@@ -45,8 +44,9 @@ public class Main {
 				insulinPumpSystem.SystemError(msg);
 			}
 		});
+		humanBody.addSuger(50);
 
-		
+			
 		
 		
 

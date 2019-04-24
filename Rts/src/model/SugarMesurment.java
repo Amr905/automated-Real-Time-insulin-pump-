@@ -17,7 +17,8 @@ public class SugarMesurment {
 					Config.sendEvent(new SugarMeasurementEvent(humanBody.getSugarLevel()));// read sugar level value
 					
 					try {
-						Thread.sleep(10000);// wait 10 sec
+						System.out.println("Added Sugar Level--->"+humanBody.getSugarLevel());
+						Thread.sleep(30000);// wait 10 sec
 					} catch (InterruptedException ex) {
 						Logger.getLogger(Clock.class.getName()).log(Level.SEVERE, null, ex);
 					}

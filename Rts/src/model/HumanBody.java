@@ -23,6 +23,9 @@ public class HumanBody  implements Runnable  {
 	public void raiseSugarLevel() {
 		SugarLevel += random(5, 10);
 	}
+	public void DecSugarLevel() {
+		SugarLevel -= random(5, 10);
+	}
 
 	public void idle() {
 		Random r = new Random();
@@ -40,10 +43,14 @@ public class HumanBody  implements Runnable  {
 	}
 
 	public void addInsulin(int insulinValue) {
-		while (SugarLevel > SugarLevel + insulinValue) {
+		
+		int currentSugarLevel = this.SugarLevel;
+							
+		while (SugarLevel > currentSugarLevel - insulinValue) {
 			try {
-				Thread.sleep(3000);
-				SugarLevel -= random(2, 7);
+				Thread.sleep(1000);
+				this.DecSugarLevel();
+				System.out.println("Insulin Added-->"+SugarLevel);
 			} catch (InterruptedException ex) {
 				Logger.getLogger(HumanBody.class.getName()).log(Level.SEVERE, null, ex);
 			}
@@ -51,9 +58,11 @@ public class HumanBody  implements Runnable  {
 	}
 
 	public void addSuger(int sugarValue) {
-		while (SugarLevel < SugarLevel + sugarValue) {
+		int currentSugarLevel = this.SugarLevel;
+		while (SugarLevel < currentSugarLevel + sugarValue) {
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(1000);
+				System.out.println("System AddSugar-->"+SugarLevel);
 				raiseSugarLevel();
 			} catch (InterruptedException ex) {
 				Logger.getLogger(HumanBody.class.getName()).log(Level.SEVERE, null, ex);
@@ -66,8 +75,9 @@ public class HumanBody  implements Runnable  {
 		while (true) {
 
 			this.idle();
+			System.out.println("System Idle-->"+SugarLevel);
 			try {
-				Thread.sleep(8000);
+				Thread.sleep(10000);
 			} catch (InterruptedException ex) {
 				Logger.getLogger(HumanBody.class.getName()).log(Level.SEVERE, null, ex);
 			}

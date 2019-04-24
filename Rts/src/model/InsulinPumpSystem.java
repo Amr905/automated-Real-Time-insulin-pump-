@@ -73,7 +73,7 @@ public class InsulinPumpSystem {
 		int rate2 = sugerReading[1] - sugerReading[0];
 		if (rate1 > rate2)
 			rateDirection = 1;// incr
-		else if (rate1 > rate2)
+		else if (rate1 < rate2)
 			rateDirection = -1;// dec
 		else
 			rateDirection = 0;// same

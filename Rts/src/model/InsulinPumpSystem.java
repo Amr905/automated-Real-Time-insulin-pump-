@@ -59,8 +59,8 @@ public class InsulinPumpSystem {
 	}
 
 	private void checkSugerLevel() {
-		if ((sugerReading[ReadingIndex] > safeMax && rateDirection != 0) || (sugerReading[ReadingIndex] >= safeMin
-				&& sugerReading[ReadingIndex] <= safeMax && rateDirection == 0)) {
+		if ((sugerReading[ReadingIndex] > safeMax && rateDirection != -1) || (sugerReading[ReadingIndex] >= safeMin
+				&& sugerReading[ReadingIndex] <= safeMax && rateDirection == 1)) {
 			int dose = computeDose();
 			computedDose += dose;
 			insulinPumper.pumpInsulin(dose);

@@ -13,13 +13,12 @@ public class Config {
 	public static void registerEvents() {
 		engine.getEPAdministrator().getConfiguration().addEventType(DisplayEvent.class);
 		engine.getEPAdministrator().getConfiguration().addEventType(SugarMeasurementEvent.class);
+		 engine.getEPAdministrator().getConfiguration().addEventType(SystemTesterEvent.class);
 		/*
-		 * engine.getEPAdministrator().getConfiguration().addEventType(FlowSensorEvent.
-		 * class);
-		 * engine.getEPAdministrator().getConfiguration().addEventType(PumpEvent.class);
 		 * 
-		 * engine.getEPAdministrator().getConfiguration().addEventType(SystemTesterEvent
-		 * .class);
+		 * engine.getEPAdministrator().getConfiguration().addEventType(PumpEvent.class); 
+		 *
+		 * engine.getEPAdministrator().getConfiguration().addEventType(FlowSensorEvent.class);
 		 */
 		System.out.println("Events Successfully Registered.");
 	}

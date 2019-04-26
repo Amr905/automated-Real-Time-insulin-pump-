@@ -11,6 +11,7 @@ import main.*;
 public class HumanBody implements Runnable {
 
 	private int SugarLevel;
+	private Integer lock;
 
 	public int getSugarLevel() {
 		return SugarLevel;
@@ -43,10 +44,9 @@ public class HumanBody implements Runnable {
 		}
 	}
 
-	public void addInsulin(int insulinValue) {
+	public synchronized void addInsulin(int insulinValue) {
 
 		int currentSugarLevel = this.SugarLevel;
-
 		while (SugarLevel > currentSugarLevel - insulinValue) {
 			try {
 				Thread.sleep(1000);
@@ -56,9 +56,10 @@ public class HumanBody implements Runnable {
 				Logger.getLogger(HumanBody.class.getName()).log(Level.SEVERE, null, ex);
 			}
 		}
-	}
+	
+}
 
-	public void addSuger(int sugarValue) {
+	public synchronized void addSuger(int sugarValue) {
 		int currentSugarLevel = this.SugarLevel;
 		while (SugarLevel < currentSugarLevel + sugarValue) {
 			try {

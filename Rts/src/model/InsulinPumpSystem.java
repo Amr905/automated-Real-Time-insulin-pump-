@@ -73,9 +73,10 @@ public class InsulinPumpSystem {
 				&& sugerReading[readingIndex] <= safeMax && rateDirection == 1)) {
 			int dose = computeDose();
 			computedDose += dose;
-			if (dose != 0)
+			if (dose != 0) {
 				insulinPumper.pumpInsulin(dose);
-			System.out.println("Dose injected-->" + dose);
+				System.out.println("Dose injected-->" + dose);
+			}
 		}
 
 	}
@@ -104,7 +105,7 @@ public class InsulinPumpSystem {
 			dose = reservoir;
 			Config.sendEvent(new DisplayMsgEvent("Out of insulin, reservoir need to be changed"));
 		}
-		
+
 		return dose;
 
 	}
@@ -118,10 +119,10 @@ public class InsulinPumpSystem {
 	public void saveCurrentSugerMeasure(int sugerReading) {
 		this.sugerReading[readingIndex] = sugerReading;
 
-		checkSugerLevel();
 		if (readingIndex == 2)
 			calcRate();
 
+		checkSugerLevel();
 		readingIndex = (readingIndex + 1) % 3;
 	}
 

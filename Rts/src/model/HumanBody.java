@@ -17,7 +17,7 @@ public class HumanBody implements Runnable {
 	}
 
 	public HumanBody() {
-		SugarLevel = 75;
+		SugarLevel = 80;
 	}
 
 	public void raiseSugarLevel() {
@@ -37,9 +37,9 @@ public class HumanBody implements Runnable {
 		} else if (SugarLevel <= 70) {
 			SugarLevel += random(2, 5);
 		} else if (rand == 0) {
-			SugarLevel += random(2, 10);
+			SugarLevel += random(2, 5);
 		} else if (rand == 1) {
-			SugarLevel -= random(2, 10);
+			SugarLevel -= random(2, 5);
 		}
 	}
 

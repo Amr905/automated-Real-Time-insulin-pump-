@@ -1,14 +1,14 @@
 package event;
 
 public class DisplayLastDose {
-	int latedose;
+	int dose;
 
-	public DisplayLastDose(int latedose) {
-		latedose = latedose;
+	public DisplayLastDose(int dose) {
+		this.dose = dose;
 	}
 
-	public int getLateDose() {
-		return latedose;
+	public int getdose() {
+		return dose;
 	}
 
 }

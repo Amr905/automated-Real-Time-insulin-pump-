@@ -50,9 +50,10 @@ public class Main {
 				insulinPumpSystem.changeReservoir(ischanged);
 			}
 		});
-		Config.createStatement("select lateDose from DisplayLastDose").setSubscriber(new Object() {
-			public void update(int lastdose) throws InterruptedException {
-				insulinPumpSystem.displayLastDose(lastdose);
+		Config.createStatement("select dose from DisplayLastDose").setSubscriber(new Object() {
+			public void update(int dose) throws InterruptedException {
+				System.out.println("EPLStatementLateDose--->"+dose);
+				insulinPumpSystem.displayLastDose(dose);
 			}
 		});
 

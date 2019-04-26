@@ -52,17 +52,18 @@ public class PumpView {
 	JButton Reservoir = new JButton("");
 	JLabel Clock = new JLabel(MyTime.toString());
 	JLabel SysDebug = new JLabel("debug");
+	private final JLabel gifimg = new JLabel("");
 	
 	
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 741, 565);
+		frame.setBounds(100, 100, 923, 554);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		
 		Clock.setFont(new Font("Tahoma", Font.PLAIN, 27));
-		Clock.setBounds(318, 117, 70, 33);
+		Clock.setBounds(318, 139, 70, 33);
 		frame.getContentPane().add(Clock);
 		
 		Image image = new ImageIcon(this.getClass().getResource("/circular-biscuits.png")).getImage();
@@ -73,7 +74,7 @@ public class PumpView {
 				human.addSuger(60);
 			}
 		});
-		BisBtn.setBounds(501, 431, 95, 62);
+		BisBtn.setBounds(392, 431, 95, 62);
 		frame.getContentPane().add(BisBtn);
 		
 		Image image1 = new ImageIcon(this.getClass().getResource("/carbs.png")).getImage();
@@ -84,11 +85,15 @@ public class PumpView {
 				human.addSuger(50);
 			}
 		});
-		CarbsBtn.setBounds(609, 431, 95, 62);
+		CarbsBtn.setBounds(502, 431, 95, 62);
 		
 		frame.getContentPane().add(CarbsBtn);
 		
 		Image image3 = new ImageIcon(this.getClass().getResource("/res.png")).getImage();
+		Reservoir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		Reservoir.setHorizontalAlignment(SwingConstants.LEFT);
 		Reservoir.setIcon(new ImageIcon(image3));
 		
@@ -97,33 +102,41 @@ public class PumpView {
 		
 		JLabel lblLastDose = new JLabel("Last Dose:");
 		lblLastDose.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		lblLastDose.setBounds(164, 144, 104, 27);
+		lblLastDose.setBounds(186, 176, 104, 27);
 		frame.getContentPane().add(lblLastDose);
 		
 		
 		LastDose.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		LastDose.setBounds(273, 144, 104, 27);
+		LastDose.setBounds(295, 176, 104, 27);
 		frame.getContentPane().add(LastDose);
 		SysMsg.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		
 		SysMsg.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		SysMsg.setBounds(164, 175, 323, 34);
+		SysMsg.setBounds(175, 210, 323, 34);
 		frame.getContentPane().add(SysMsg);
 		
 		Image image2 = new ImageIcon(this.getClass().getResource("/device.png")).getImage();
 		imgback.setIcon(new ImageIcon(image2));
 		imgback.setHorizontalAlignment(SwingConstants.CENTER);
 		imgback.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		imgback.setBounds(56, 99, 560, 237);
+		imgback.setBounds(56, 99, 587, 285);
 		
 		frame.getContentPane().add(imgback);
 		
 		
 		SysDebug.setHorizontalAlignment(SwingConstants.CENTER);
 		SysDebug.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		SysDebug.setBounds(15, 459, 356, 34);
+		SysDebug.setBounds(15, 448, 356, 34);
 		frame.getContentPane().add(SysDebug);
+		
+		Image image4 = new ImageIcon(this.getClass().getResource("/notpump.gif")).getImage();
+		gifimg.setIcon(new ImageIcon(image4));
+		gifimg.setHorizontalAlignment(SwingConstants.CENTER);
+		gifimg.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		gifimg.setBounds(639, 96, 247, 201);
+		
+		frame.getContentPane().add(gifimg);
 		
 		
 		
@@ -142,4 +155,19 @@ public class PumpView {
 	public void SetLastDose(int LateDose) {
 		LastDose.setText(Integer.toString(LateDose));
 	}
+	
+	public void Pumping() {
+		Image image4 = new ImageIcon(this.getClass().getResource("/pump.gif")).getImage();
+		gifimg.setIcon(new ImageIcon(image4));
+	}
+	public void notPumping() {
+		Image image4 = new ImageIcon(this.getClass().getResource("/notpump.gif")).getImage();
+		gifimg.setIcon(new ImageIcon(image4));
+	}
+	
+	public void BtnState (boolean state) {
+		BisBtn.setEnabled(state);
+		CarbsBtn.setEnabled(state);
+	}
+	
 }

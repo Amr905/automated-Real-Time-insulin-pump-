@@ -20,9 +20,9 @@ public class Main {
 
 		// Register events
 		Config.registerEvents();
-		
+
 		final HumanBody humanBody = new HumanBody();
-		
+
 		Thread humanBodyThread = new Thread(humanBody);
 		humanBodyThread.start();
 		final InsulinPumpSystem insulinPumpSystem = new InsulinPumpSystem(humanBody);
@@ -55,17 +55,21 @@ public class Main {
 		});
 		Config.createStatement("select dose from DisplayLastDose").setSubscriber(new Object() {
 			public void update(int dose) throws InterruptedException {
-				System.out.println("EPLStatementLateDose--->"+dose);
+				System.out.println("EPLStatementLateDose--->" + dose);
 				insulinPumpSystem.displayLastDose(dose);
 			}
 		});
 		Config.createStatement("select insulinvalue from PumpEvent").setSubscriber(new Object() {
 			public void update(int insulinvalue) throws InterruptedException {
-			
+
 				insulinPumpSystem.pumpInsluin(insulinvalue);
 			}
 		});
-		
+		Config.createStatement("select isReset from ResetEvent").setSubscriber(new Object() {
+			public void update(boolean isReset) throws InterruptedException {
+				insulinPumpSystem.resetSystem();
+			}
+		});
 
 	}
 

@@ -7,9 +7,9 @@ import main.Config;
 import view.PumpView;
 
 public class InsulinPumpSystem {
-	
+
 	private PumpView gui;
-	
+
 	private Clock clock;
 	private Display myDisplay;
 	private SugarMesurment sugarMesurment;
@@ -24,11 +24,13 @@ public class InsulinPumpSystem {
 	private float currentRate;
 	private int rateDirection;// -1 decr , 1 inc
 	private InsulinPumper insulinPumper;
+	private int reservoir;
+
 	public InsulinPumpSystem(HumanBody humanBody) {
-		
+
 		gui = new PumpView(humanBody);
 		gui.frame.setVisible(true);
-		
+
 		this.clock = new Clock();
 		this.myDisplay = new Display(gui);
 		this.systemTester = new SystemTester();
@@ -42,7 +44,8 @@ public class InsulinPumpSystem {
 		computedDose = 0;
 		currentRate = 0;
 		rateDirection = 0;
-		insulinPumper= new InsulinPumper(humanBody);
+		insulinPumper = new InsulinPumper(humanBody);
+		reservoir = 100;
 	}
 
 	public void Timer(LocalTime time) {
@@ -75,7 +78,6 @@ public class InsulinPumpSystem {
 
 	}
 
-	
 	private void calcRate() {
 		int rate1 = sugerReading[2] - sugerReading[1];
 		int rate2 = sugerReading[1] - sugerReading[0];
@@ -95,10 +97,14 @@ public class InsulinPumpSystem {
 			dose = maxSingleDose;
 		if (computedDose + dose > maxDailyDose)
 			dose = maxDailyDose - computedDose;
-
-		System.out.println("Dose injected-->"+dose);
+		//add here conditon for taking consideration of reservoir and what should it do if  it run out of insulin
+		System.out.println("Dose injected-->" + dose);
 		return dose;
 
+	}
+
+	public void changeReservoir() {
+		reservoir = 100;
 	}
 
 	public void saveCurrentSugerMeasure(int sugerReading) {

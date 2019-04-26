@@ -31,7 +31,7 @@ public class Main {
 		});
 		Config.createStatement("select sugarLevel from SugarMeasurementEvent").setSubscriber(new Object() {
 			public void update(int SugarLevel) throws InterruptedException {
-				insulinPumpSystem.addSugerMeasure(SugarLevel);
+				insulinPumpSystem.saveCurrentSugerMeasure(SugarLevel);
 			}
 		});
 		Config.createStatement("select systemStatus from SystemTesterEvent").setSubscriber(new Object() {

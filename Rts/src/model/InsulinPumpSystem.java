@@ -94,7 +94,7 @@ public class InsulinPumpSystem {
 
 	}
 
-	public void addSugerMeasure(int sugerReading) {
+	public void saveCurrentSugerMeasure(int sugerReading) {
 		this.sugerReading[ReadingIndex] = sugerReading;
 
 		checkSugerLevel();

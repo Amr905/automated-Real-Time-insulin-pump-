@@ -26,4 +26,7 @@ public class SugarMesurment {
 
 		}).start();
 	}
+	public boolean checkSensor() {
+		return true;
+	}
 }

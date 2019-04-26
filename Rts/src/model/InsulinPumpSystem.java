@@ -27,13 +27,12 @@ public class InsulinPumpSystem {
 	private int reservoir;
 
 	public InsulinPumpSystem(HumanBody humanBody) {
-		this.systemTester = new SystemTester();
+
 		gui = new PumpView(humanBody);
 		gui.frame.setVisible(true);
 
 		this.clock = new Clock();
 		this.myDisplay = new Display(gui);
-		
 		this.sugarMesurment = new SugarMesurment(humanBody);
 		sugerReading = new int[3];
 		readingIndex = 0;
@@ -46,6 +45,7 @@ public class InsulinPumpSystem {
 		rateDirection = 0;
 		insulinPumper = new InsulinPumper(humanBody);
 		reservoir = 100;
+		this.systemTester = new SystemTester(this);
 	}
 
 	public void Timer(LocalTime time) {
@@ -132,7 +132,22 @@ public class InsulinPumpSystem {
 	public void displayLastDose(int lastDose) {
 		myDisplay.displayLatestDose(lastDose);
 	}
+
 	public void pumpInsluin(int insulinValue) {
 		insulinPumper.pumpInsulin(insulinValue);
+	}
+
+	public boolean checkPumperSensor() {
+		return insulinPumper.checkSensor();
+	
+	}
+
+	public boolean checkSugerMesurmentSensor() {
+		return sugarMesurment.checkSensor();
+	}
+
+	public boolean checkReservoir() {
+		if(reservoir>0)return true;
+		else return false;
 	}
 }

@@ -18,7 +18,7 @@ public class Clock {
 				while (true) {
 					LocalTime now = LocalTime.now();
 					LocalTime MyTime = LocalTime.of(now.getHour(), now.getMinute());
-					//System.out.println("Class Clock ---->"+MyTime);
+					// System.out.println("Class Clock ---->"+MyTime);
 					Config.sendEvent(new DisplayClockEvent(MyTime));
 					try {
 						Thread.sleep(60000);

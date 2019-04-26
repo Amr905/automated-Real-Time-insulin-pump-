@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import event.ReservoirEvent;
 import model.HumanBody;
 import model.InsulinPumpSystem;
 
@@ -22,10 +23,10 @@ public class Main {
 		Thread humanBodyThread = new Thread(humanBody);
 		humanBodyThread.start();
 		final InsulinPumpSystem insulinPumpSystem = new InsulinPumpSystem(humanBody);
-		
+
 		Config.createStatement("select clock from DisplayClockEvent").setSubscriber(new Object() {
 			public void update(LocalTime clock) throws InterruptedException {
-				//System.out.println("Clock-->"+clock);
+				// System.out.println("Clock-->"+clock);
 				insulinPumpSystem.Timer(clock);
 			}
 		});
@@ -44,16 +45,13 @@ public class Main {
 				insulinPumpSystem.displayMsg(msg);
 			}
 		});
-		Config.createStatement("select ischanged from ReservoirEvent").setSubscriber(new Object() {
-			public void update(Boolean ischanged) throws InterruptedException {
+		Config.createStatement("select changed from ReservoirEvent").setSubscriber(new Object() {
+			public void update(boolean ischanged) throws InterruptedException {
 				insulinPumpSystem.changeReservoir(ischanged);
 			}
 		});
-		
 
-			
-		
-		
+		Config.sendEvent(new ReservoirEvent(true));
 
 	}
 

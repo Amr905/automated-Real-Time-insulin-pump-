@@ -97,15 +97,20 @@ public class InsulinPumpSystem {
 			dose = maxSingleDose;
 		if (computedDose + dose > maxDailyDose)
 			dose = maxDailyDose - computedDose;
-		//add here conditon for taking consideration of reservoir and what should it do if  it run out of insulin
+	
+		if (reservoir - dose < 0) {
+			dose = reservoir;
+			Config.sendEvent(new DisplayMsgEvent("Out of insulin, reservoir need to be changed"));
+		}F
 		System.out.println("Dose injected-->" + dose);
 		return dose;
 
 	}
 
 	public void changeReservoir(Boolean isChanged) {
-		if(isChanged)
-		reservoir = 100;
+		if (isChanged)
+			reservoir = 100;
+		System.out.println("resoivir changed");
 	}
 
 	public void saveCurrentSugerMeasure(int sugerReading) {

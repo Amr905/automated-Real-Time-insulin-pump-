@@ -9,7 +9,7 @@ public class SugarMeasurementEvent {
 		this.sugarlevel = sugarlevel;
 	}
 
-	public int getSugarLevel() {
+	public int getSugarLevel() {F
 		return this.sugarlevel;
 	}
 

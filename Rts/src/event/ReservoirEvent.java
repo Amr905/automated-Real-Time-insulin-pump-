@@ -4,8 +4,8 @@ public class ReservoirEvent {
 
 	private boolean ischanged;
 
-	public ReservoirEvent(boolean isChanged) {
-		this.ischanged = isChanged;
+	public ReservoirEvent(boolean ischanged) {
+		this.ischanged = ischanged;
 	}
 
 	public boolean isChanged() {

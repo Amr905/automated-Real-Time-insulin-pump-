@@ -51,6 +51,8 @@ public class PumpView {
 	JLabel SysDebug = new JLabel("debug");
 	private final JLabel gifimg = new JLabel("");
 	private final JLabel insState = new JLabel("");
+	private final JLabel SugLvl = new JLabel("0.0");
+	private final JLabel lblChange = new JLabel("Change Reservoir");
 	
 	
 	private void initialize() {
@@ -113,7 +115,7 @@ public class PumpView {
 		Reservoir.setHorizontalAlignment(SwingConstants.LEFT);
 		Reservoir.setIcon(new ImageIcon(image3));
 		
-		Reservoir.setBounds(15, 16, 134, 67);
+		Reservoir.setBounds(15, 16, 125, 50);
 		frame.getContentPane().add(Reservoir);
 		
 		JLabel lblLastDose = new JLabel("Last Dose:");
@@ -153,6 +155,16 @@ public class PumpView {
 		gifimg.setBounds(639, 96, 247, 201);
 		
 		frame.getContentPane().add(gifimg);
+		SugLvl.setHorizontalAlignment(SwingConstants.CENTER);
+		SugLvl.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		SugLvl.setBounds(639, 369, 247, 34);
+		
+		frame.getContentPane().add(SugLvl);
+		lblChange.setHorizontalAlignment(SwingConstants.CENTER);
+		lblChange.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblChange.setBounds(15, 69, 125, 27);
+		
+		frame.getContentPane().add(lblChange);
 		
 		
 		
@@ -170,6 +182,9 @@ public class PumpView {
 	}
 	public void SetLastDose(int LateDose) {
 		LastDose.setText(Integer.toString(LateDose));
+	}
+	public void SetSugLvl(int Suglvl) {
+		SugLvl.setText(Integer.toString(Suglvl));
 	}
 	
 	public void Pumping() {
@@ -193,13 +208,17 @@ public class PumpView {
 		CarbsBtn.setEnabled(state);
 	}
 	public void ResState(int res) {
-		Image image4;
-		if (res<= 50) {
-			image4 = new ImageIcon(this.getClass().getResource("/resov1.png")).getImage();
-		} else {
-			image4 = new ImageIcon(this.getClass().getResource("/resov2.png")).getImage();
+		Image imageres = null;
+		if (res>=75 && res<=100) {
+			imageres = new ImageIcon(this.getClass().getResource("/resov1.png")).getImage();
+		} else if (res>=50 && res<75) {
+			imageres = new ImageIcon(this.getClass().getResource("/resov2.png")).getImage();
+		} else if (res>=25 && res<50) {
+			imageres = new ImageIcon(this.getClass().getResource("/resov3.png")).getImage();
+		} else if (res>=0 && res<25) {
+			imageres = new ImageIcon(this.getClass().getResource("/resov4.png")).getImage();
 		}
-		insState.setIcon(new ImageIcon(image4));
+		insState.setIcon(new ImageIcon(imageres));
 	}
 	
 }

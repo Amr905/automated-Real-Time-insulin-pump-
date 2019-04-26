@@ -8,10 +8,15 @@ import java.awt.Button;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.time.Clock;
+import java.time.LocalTime;
+
 import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
+
+import model.HumanBody;
 
 public class PumpView {
 
@@ -24,8 +29,11 @@ public class PumpView {
 	/**
 	 * Create the application.
 	 */
-	public PumpView() {
+	HumanBody human;
+	
+	public PumpView(HumanBody human) {
 		initialize();
+		this.human = human;
 	}
 
 	/**
@@ -34,6 +42,8 @@ public class PumpView {
 	JLabel Clock = new JLabel("00:00");
 	private final JButton BisBtn = new JButton("Biscuits");
 	private final JButton CarbsBtn = new JButton("Carbs");
+	JLabel SysMsg = new JLabel("Loading...");
+	JLabel LastDose = new JLabel("0.0");
 	
 	private void initialize() {
 		frame = new JFrame();
@@ -48,6 +58,7 @@ public class PumpView {
 		BisBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Config add sugar
+				human.addSuger(60);
 			}
 		});
 		BisBtn.setBounds(369, 377, 115, 29);
@@ -56,6 +67,7 @@ public class PumpView {
 		CarbsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Config add sugar
+				human.addSuger(50);
 			}
 		});
 		CarbsBtn.setBounds(499, 377, 115, 29);
@@ -76,18 +88,25 @@ public class PumpView {
 		lblLastDose.setBounds(15, 303, 104, 27);
 		frame.getContentPane().add(lblLastDose);
 		
-		JLabel LastDose = new JLabel("0.0");
+		
 		LastDose.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		LastDose.setBounds(134, 303, 104, 27);
 		frame.getContentPane().add(LastDose);
+		SysMsg.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JLabel SysMsg = new JLabel("Loading...");
+		
 		SysMsg.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		SysMsg.setBounds(260, 159, 120, 34);
+		SysMsg.setBounds(89, 159, 442, 34);
 		frame.getContentPane().add(SysMsg);
 	}
 	
-	public void SetClock(String time) {
-		Clock.setText(time);
+	public void SetClock(LocalTime time) {
+		Clock.setText(time.toString());
+	}
+	public void SetMsg(String Msg) {
+		SysMsg.setText(Msg);
+	}
+	public void SetLastDose(int LateDose) {
+		LastDose.setText(Integer.toString(LateDose));
 	}
 }

@@ -4,9 +4,12 @@ import java.time.LocalTime;
 
 import event.*;
 import main.Config;
+import view.PumpView;
 
 public class InsulinPumpSystem {
-
+	
+	private PumpView gui;
+	
 	private Clock clock;
 	private Display myDisplay;
 	private SugarMesurment sugarMesurment;
@@ -22,8 +25,12 @@ public class InsulinPumpSystem {
 	private int rateDirection;// -1 decr , 1 inc
 	private InsulinPumper insulinPumper;
 	public InsulinPumpSystem(HumanBody humanBody) {
+		
+		gui = new PumpView(humanBody);
+		gui.frame.setVisible(true);
+		
 		this.clock = new Clock();
-		this.myDisplay = new Display();
+		this.myDisplay = new Display(gui);
 		this.systemTester = new SystemTester();
 		this.sugarMesurment = new SugarMesurment(humanBody);
 		sugerReading = new int[3];

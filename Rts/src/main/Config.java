@@ -17,6 +17,7 @@ public class Config {
 		engine.getEPAdministrator().getConfiguration().addEventType(DisplayMsgEvent.class);
 		engine.getEPAdministrator().getConfiguration().addEventType(ReservoirEvent.class);
 		engine.getEPAdministrator().getConfiguration().addEventType(DisplayLastDose.class);
+		engine.getEPAdministrator().getConfiguration().addEventType(PumpEvent.class);
 		System.out.println("Events Successfully Registered.");
 	}
 

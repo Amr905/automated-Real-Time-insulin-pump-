@@ -113,7 +113,7 @@ public class InsulinPumpSystem {
 
 	}
 
-	public void changeReservoir(Boolean isChanged) {
+	public void changeReservoir(boolean isChanged) {
 		if (isChanged)
 			reservoir = 100;
 		System.out.println("resoivir changed");
@@ -131,5 +131,8 @@ public class InsulinPumpSystem {
 
 	public void displayLastDose(int lastDose) {
 		myDisplay.displayLatestDose(lastDose);
+	}
+	public void pumpInsluin(int insulinValue) {
+		insulinPumper.pumpInsulin(insulinValue);
 	}
 }

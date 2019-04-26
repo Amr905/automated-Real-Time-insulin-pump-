@@ -56,8 +56,13 @@ public class Main {
 				insulinPumpSystem.displayLastDose(dose);
 			}
 		});
-
-		Config.sendEvent(new ReservoirEvent(true));
+		Config.createStatement("select insulinvalue from PumpEvent").setSubscriber(new Object() {
+			public void update(int insulinvalue) throws InterruptedException {
+			
+				insulinPumpSystem.pumpInsluin(insulinvalue);
+			}
+		});
+		
 
 	}
 

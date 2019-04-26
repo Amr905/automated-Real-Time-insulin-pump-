@@ -8,17 +8,14 @@ import java.awt.Button;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
-import java.time.Clock;
 import java.time.LocalTime;
 
-import javax.swing.JPanel;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 import model.HumanBody;
-import java.awt.Color;
 
 public class PumpView {
 
@@ -53,6 +50,7 @@ public class PumpView {
 	JLabel Clock = new JLabel(MyTime.toString());
 	JLabel SysDebug = new JLabel("debug");
 	private final JLabel gifimg = new JLabel("");
+	private final JLabel insState = new JLabel("");
 	
 	
 	private void initialize() {
@@ -60,6 +58,13 @@ public class PumpView {
 		frame.setBounds(100, 100, 923, 554);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		Image image5 = new ImageIcon(this.getClass().getResource("/resov2.png")).getImage();
+		insState.setIcon(new ImageIcon(image5));
+		insState.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		insState.setBounds(186, 139, 117, 33);
+		
+		frame.getContentPane().add(insState);
+		
 		
 		
 		Clock.setFont(new Font("Tahoma", Font.PLAIN, 27));
@@ -102,6 +107,7 @@ public class PumpView {
 		Image image3 = new ImageIcon(this.getClass().getResource("/res.png")).getImage();
 		Reservoir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		Reservoir.setHorizontalAlignment(SwingConstants.LEFT);
@@ -185,6 +191,15 @@ public class PumpView {
 	public void BtnState (boolean state) {
 		BisBtn.setEnabled(state);
 		CarbsBtn.setEnabled(state);
+	}
+	public void ResState(int res) {
+		Image image4;
+		if (res<= 50) {
+			image4 = new ImageIcon(this.getClass().getResource("/resov1.png")).getImage();
+		} else {
+			image4 = new ImageIcon(this.getClass().getResource("/resov2.png")).getImage();
+		}
+		insState.setIcon(new ImageIcon(image4));
 	}
 	
 }

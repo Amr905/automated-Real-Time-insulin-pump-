@@ -15,7 +15,8 @@ public class Config {
 		engine.getEPAdministrator().getConfiguration().addEventType(SugarMeasurementEvent.class);
 		engine.getEPAdministrator().getConfiguration().addEventType(SystemTesterEvent.class);
 		engine.getEPAdministrator().getConfiguration().addEventType(DisplayMsgEvent.class);
-
+		engine.getEPAdministrator().getConfiguration().addEventType(ReservoirEvent.class);
+		engine.getEPAdministrator().getConfiguration().addEventType(DisplayLastDose.class);
 		System.out.println("Events Successfully Registered.");
 	}
 

@@ -44,7 +44,12 @@ public class Main {
 				insulinPumpSystem.displayMsg(msg);
 			}
 		});
-		humanBody.addSuger(50);
+		Config.createStatement("select ischanged from ReservoirEvent").setSubscriber(new Object() {
+			public void update(Boolean ischanged) throws InterruptedException {
+				insulinPumpSystem.changeReservoir(ischanged);
+			}
+		});
+		
 
 			
 		

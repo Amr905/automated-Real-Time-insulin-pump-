@@ -103,7 +103,8 @@ public class InsulinPumpSystem {
 
 	}
 
-	public void changeReservoir() {
+	public void changeReservoir(Boolean isChanged) {
+		if(isChanged)
 		reservoir = 100;
 	}
 

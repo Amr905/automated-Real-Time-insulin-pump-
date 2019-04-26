@@ -1,9 +1,9 @@
 package event;
 
-public class DisplayLateDose {
+public class DisplayLastDose {
 	int latedose;
 
-	public DisplayLateDose(int latedose) {
+	public DisplayLastDose(int latedose) {
 		latedose = latedose;
 	}
 

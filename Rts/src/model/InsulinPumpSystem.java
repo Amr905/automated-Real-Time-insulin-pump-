@@ -74,10 +74,13 @@ public class InsulinPumpSystem {
 			int dose = computeDose();
 			computedDose += dose;
 			if (dose != 0) {
-				insulinPumper.pumpInsulin(dose);
-				System.out.println("Dose injected-->" + dose);
+				reservoir-=dose;
 				gui.BtnState(true);
 				gui.Pumping();
+				gui.ResState(reservoir);
+				insulinPumper.pumpInsulin(dose);
+				System.out.println("Dose injected-->" + dose);
+			
 			}
 		}
 		

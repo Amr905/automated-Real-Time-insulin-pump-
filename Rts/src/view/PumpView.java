@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 
 import model.HumanBody;
+import model.InsulinPumpSystem;
 
 public class PumpView {
 
@@ -29,10 +30,11 @@ public class PumpView {
 	 * Create the application.
 	 */
 	HumanBody human;
-	
-	public PumpView(HumanBody human) {
+	InsulinPumpSystem Controller;
+	public PumpView(HumanBody human,InsulinPumpSystem Controller) {
 		initialize();
 		this.human = human;
+		this.Controller=Controller ;
 	}
 
 	/**
@@ -60,7 +62,7 @@ public class PumpView {
 		frame.setBounds(100, 100, 923, 554);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		Image image5 = new ImageIcon(this.getClass().getResource("/resov2.png")).getImage();
+		Image image5 = new ImageIcon(this.getClass().getResource("/resov1.png")).getImage();
 		insState.setIcon(new ImageIcon(image5));
 		insState.setFont(new Font("Tahoma", Font.PLAIN, 27));
 		insState.setBounds(186, 139, 117, 33);
@@ -110,6 +112,8 @@ public class PumpView {
 		Reservoir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				Controller.changeReservoir(true);
+				ResState(100);
 			}
 		});
 		Reservoir.setHorizontalAlignment(SwingConstants.LEFT);

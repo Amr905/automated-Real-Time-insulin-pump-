@@ -6,25 +6,40 @@ import java.time.LocalTime;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
+import event.DisplayClockEvent;
 import event.ReservoirEvent;
+import model.Clock;
 import model.HumanBody;
 import model.InsulinPumpSystem;
 import view.PumpView;
 
-public class Main {
+public class Main{
 
 	public static void main(String[] args) {
+		final HumanBody humanBody = new HumanBody();
 
+		Thread humanBodyThread = new Thread(humanBody);
+		humanBodyThread.start();
+		Thread main = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				
+				Program(humanBody);
+			}
+		});
+		main.start();
+		
+
+	}
+	
+	public static void Program(HumanBody humanBody) {
 		// Disable logging
 		Logger.getRootLogger().setLevel(Level.OFF);
 
 		// Register events
 		Config.registerEvents();
 
-		final HumanBody humanBody = new HumanBody();
 
-		Thread humanBodyThread = new Thread(humanBody);
-		humanBodyThread.start();
 		final InsulinPumpSystem insulinPumpSystem = new InsulinPumpSystem(humanBody);
 
 		Config.createStatement("select clock from DisplayClockEvent").setSubscriber(new Object() {
@@ -70,7 +85,10 @@ public class Main {
 				insulinPumpSystem.resetSystem();
 			}
 		});
-
 	}
+
+
+
+	
 
 }

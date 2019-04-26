@@ -28,7 +28,7 @@ public class InsulinPumpSystem {
 
 	public InsulinPumpSystem(HumanBody humanBody) {
 
-		gui = new PumpView(humanBody);
+		gui = new PumpView(humanBody,this);
 		gui.frame.setVisible(true);
 
 		this.clock = new Clock();
@@ -38,7 +38,7 @@ public class InsulinPumpSystem {
 		readingIndex = 0;
 		safeMin = 70;
 		safeMax = 100;
-		maxDailyDose = 100;
+		maxDailyDose = 1000;
 		maxSingleDose = 60;
 		computedDose = 0;
 		currentRate = 0;
@@ -58,7 +58,7 @@ public class InsulinPumpSystem {
 
 	public void checkSystemSatus(String status) {
 		if (!status.equals("OK")) {
-			Config.sendEvent(new DisplayMsgEvent("ERROR CLOSING"));
+			Config.sendEvent(new DisplayMsgEvent(status));
 			// Stop();
 		}
 
@@ -119,14 +119,16 @@ public class InsulinPumpSystem {
 	}
 
 	public void changeReservoir(boolean isChanged) {
-		if (isChanged)
+		if (isChanged) {
 			reservoir = 100;
-		System.out.println("resoivir changed");
+			System.out.println("resoivir changed"+reservoir);
+			Config.sendEvent(new ResetEvent(true));
+		}
 	}
 
 	public void saveCurrentSugerMeasure(int sugerReading) {
 		this.sugerReading[readingIndex] = sugerReading;
-
+		gui.SetSugLvl(sugerReading);
 		if (readingIndex == 2)
 			calcRate();
 

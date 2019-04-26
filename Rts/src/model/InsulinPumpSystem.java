@@ -95,7 +95,7 @@ public class InsulinPumpSystem {
 	}
 
 	private int computeDose() {
-		int dose = sugerReading[readingIndex] - safeMax;
+		int dose = (sugerReading[readingIndex] - safeMax)+10;
 		if (dose > maxSingleDose)
 			dose = maxSingleDose;
 		if (computedDose + dose > maxDailyDose)
@@ -106,7 +106,10 @@ public class InsulinPumpSystem {
 			Config.sendEvent(new DisplayMsgEvent("Out of insulin, reservoir need to be changed"));
 		}
 
-		return dose;
+		if(dose<0)
+			return 0;
+		else
+			return dose;
 
 	}
 

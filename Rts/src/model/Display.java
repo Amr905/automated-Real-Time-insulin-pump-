@@ -7,14 +7,14 @@ import java.util.Queue;
 import view.PumpView;
 
 public class Display {
-	private int lateDose;
+	private int lastDose;
 	private String msg;
 	private LocalTime localTime;
 	private ArrayList<String> bufferMsg;
 	private PumpView GUI;
 
 	public Display(PumpView GUI) {
-		this.lateDose = 0;
+		this.lastDose = 0;
 		this.msg = "System Working";
 		this.localTime = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
 		bufferMsg = new ArrayList<>();
@@ -35,14 +35,14 @@ public class Display {
 		GUI.SetMsg(msg);
 	}
 
-	public void displayLatestDose(int LateDose) {
-		this.lateDose = LateDose;
-		System.out.println(LateDose);
-		GUI.SetLastDose(LateDose);
+	public void displayLatestDose(int LastDose) {
+		this.lastDose = LastDose;
+		System.out.println("last dose -->"+LastDose);
+		GUI.SetLastDose(LastDose);
 	}
 
 	public int getLateDose() {
-		return lateDose;
+		return lastDose;
 	}
 
 	public String getMsg() {

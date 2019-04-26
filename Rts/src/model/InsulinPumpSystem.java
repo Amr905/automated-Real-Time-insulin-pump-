@@ -73,7 +73,9 @@ public class InsulinPumpSystem {
 				&& sugerReading[readingIndex] <= safeMax && rateDirection == 1)) {
 			int dose = computeDose();
 			computedDose += dose;
-			insulinPumper.pumpInsulin(dose);
+			if (dose != 0)
+				insulinPumper.pumpInsulin(dose);
+			System.out.println("Dose injected-->" + dose);
 		}
 
 	}
@@ -97,12 +99,12 @@ public class InsulinPumpSystem {
 			dose = maxSingleDose;
 		if (computedDose + dose > maxDailyDose)
 			dose = maxDailyDose - computedDose;
-	
+
 		if (reservoir - dose < 0) {
 			dose = reservoir;
 			Config.sendEvent(new DisplayMsgEvent("Out of insulin, reservoir need to be changed"));
 		}
-		System.out.println("Dose injected-->" + dose);
+		
 		return dose;
 
 	}
@@ -121,5 +123,9 @@ public class InsulinPumpSystem {
 			calcRate();
 
 		readingIndex = (readingIndex + 1) % 3;
+	}
+
+	public void displayLastDose(int lastDose) {
+		myDisplay.displayLatestDose(lastDose);
 	}
 }

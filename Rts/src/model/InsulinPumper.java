@@ -1,5 +1,8 @@
 package model;
 
+import event.DisplayLastDose;
+import main.Config;
+
 public class InsulinPumper {
 	HumanBody humanBody;
 
@@ -9,5 +12,6 @@ public class InsulinPumper {
 
 	public void pumpInsulin(int insulinValue) {
 		humanBody.addInsulin(insulinValue);
+		Config.sendEvent(new DisplayLastDose(insulinValue));
 	}
 }

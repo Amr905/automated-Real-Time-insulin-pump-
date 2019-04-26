@@ -50,6 +50,11 @@ public class Main {
 				insulinPumpSystem.changeReservoir(ischanged);
 			}
 		});
+		Config.createStatement("select lateDose from DisplayLastDose").setSubscriber(new Object() {
+			public void update(int lastdose) throws InterruptedException {
+				insulinPumpSystem.displayLastDose(lastdose);
+			}
+		});
 
 		Config.sendEvent(new ReservoirEvent(true));
 

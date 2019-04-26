@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import event.DisplayClockEvent;
+import event.ResetEvent;
 import main.*;
 
 public class Clock {
@@ -17,9 +18,11 @@ public class Clock {
 
 				while (true) {
 					LocalTime now = LocalTime.now();
-					LocalTime MyTime = LocalTime.of(now.getHour(), now.getMinute());
-					// System.out.println("Class Clock ---->"+MyTime);
-					Config.sendEvent(new DisplayClockEvent(MyTime));
+					LocalTime myTime = LocalTime.of(now.getHour(), now.getMinute());
+					System.out.println("Class Clock ---->"+myTime);
+					Config.sendEvent(new DisplayClockEvent(myTime));
+					if (myTime.toString().equals("00:00"))
+						Config.sendEvent(new ResetEvent(true));
 					try {
 						Thread.sleep(60000);
 					} catch (InterruptedException ex) {

@@ -155,4 +155,15 @@ public class InsulinPumpSystem {
 		if(reservoir>0)return true;
 		else return false;
 	}
+	public void startSytem() {
+		displayMsg("System Started");
+	}
+	public void endSystem() {
+		displayMsg("System ended");
+	}
+	public void resetSystem() {
+		computedDose = 0;
+		currentRate = 0;
+		rateDirection = 0;
+	}
 }

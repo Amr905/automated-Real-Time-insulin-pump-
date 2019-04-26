@@ -8,11 +8,11 @@ import main.Config;
 public class InsulinPumpSystem {
 
 	private Clock clock;
-	private Display MyDisplay;
+	private Display myDisplay;
 	private SugarMesurment sugarMesurment;
-	private SystemTester St;
+	private SystemTester systemTester;
 	private int[] sugerReading;
-	private int ReadingIndex;
+	private int readingIndex;
 	private int safeMin;
 	private int safeMax;
 	private int maxDailyDose;
@@ -23,11 +23,11 @@ public class InsulinPumpSystem {
 	private InsulinPumper insulinPumper;
 	public InsulinPumpSystem(HumanBody humanBody) {
 		this.clock = new Clock();
-		this.MyDisplay = new Display();
-		this.St = new SystemTester();
+		this.myDisplay = new Display();
+		this.systemTester = new SystemTester();
 		this.sugarMesurment = new SugarMesurment(humanBody);
 		sugerReading = new int[3];
-		ReadingIndex = 0;
+		readingIndex = 0;
 		safeMin = 70;
 		safeMax = 100;
 		maxDailyDose = 100;
@@ -39,11 +39,11 @@ public class InsulinPumpSystem {
 	}
 
 	public void Timer(LocalTime time) {
-		this.MyDisplay.displayClock(time);
+		this.myDisplay.displayClock(time);
 	}
 
-	public void SystemError(String s) {
-		this.MyDisplay.displayError(s);
+	public void displayMsg(String s) {
+		this.myDisplay.addMsg(s);
 	}
 
 	public void checkSystemSatus(String status) {
@@ -59,8 +59,8 @@ public class InsulinPumpSystem {
 	}
 
 	private void checkSugerLevel() {
-		if ((sugerReading[ReadingIndex] > safeMax && rateDirection != -1) || (sugerReading[ReadingIndex] >= safeMin
-				&& sugerReading[ReadingIndex] <= safeMax && rateDirection == 1)) {
+		if ((sugerReading[readingIndex] > safeMax && rateDirection != -1) || (sugerReading[readingIndex] >= safeMin
+				&& sugerReading[readingIndex] <= safeMax && rateDirection == 1)) {
 			int dose = computeDose();
 			computedDose += dose;
 			insulinPumper.pumpInsulin(dose);
@@ -83,7 +83,7 @@ public class InsulinPumpSystem {
 	}
 
 	private int computeDose() {
-		int dose = sugerReading[ReadingIndex] - safeMax;
+		int dose = sugerReading[readingIndex] - safeMax;
 		if (dose > maxSingleDose)
 			dose = maxSingleDose;
 		if (computedDose + dose > maxDailyDose)
@@ -95,12 +95,12 @@ public class InsulinPumpSystem {
 	}
 
 	public void saveCurrentSugerMeasure(int sugerReading) {
-		this.sugerReading[ReadingIndex] = sugerReading;
+		this.sugerReading[readingIndex] = sugerReading;
 
 		checkSugerLevel();
-		if (ReadingIndex == 2)
+		if (readingIndex == 2)
 			calcRate();
 
-		ReadingIndex = (ReadingIndex + 1) % 3;
+		readingIndex = (readingIndex + 1) % 3;
 	}
 }

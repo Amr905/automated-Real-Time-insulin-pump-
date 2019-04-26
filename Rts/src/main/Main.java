@@ -41,7 +41,7 @@ public class Main {
 		});
 		Config.createStatement("select msg from DisplayMsgEvent").setSubscriber(new Object() {
 			public void update(String msg) throws InterruptedException {
-				insulinPumpSystem.SystemError(msg);
+				insulinPumpSystem.displayMsg(msg);
 			}
 		});
 		humanBody.addSuger(50);

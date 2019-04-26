@@ -1,38 +1,42 @@
 package model;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Queue;
 
 public class Display {
-	private int LateDose;
-	private String Msg;
-	private LocalTime LT;
-
+	private int lateDose;
+	private String msg;
+	private LocalTime localTime;
+	private ArrayList<String>bufferMsg;
 	public Display() {
-		this.LateDose=0;
-		this.Msg="System Working";
-		this.LT=LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
+		this.lateDose=0;
+		this.msg="System Working";
+		this.localTime=LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
+		bufferMsg=new ArrayList<>();
 	}
 
 	public void displayClock(LocalTime Time) {
-		this.LT=Time;
+		this.localTime=Time;
 		System.out.println(Time);
 	}
-	public void displayError (String s) {
-		this.Msg=s;
-		System.out.println(s);
+	public void addMsg (String msg) {
+		bufferMsg.add(msg);
+		this.msg=msg;
+		System.out.println(msg);
 	}
 	public void displayLatestDose(int LateDose) {
-		this.LateDose=LateDose;
+		this.lateDose=LateDose;
 		System.out.println(LateDose);
 	}
 	public int getLateDose() {
-		return LateDose;
+		return lateDose;
 	}
 	public String getMsg() {
-		return Msg;
+		return msg;
 	}
 	public LocalTime getLT() {
-		return LT;
+		return localTime;
 	}
 
 

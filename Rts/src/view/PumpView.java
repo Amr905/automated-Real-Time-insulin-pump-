@@ -56,6 +56,12 @@ public class PumpView {
 	private final JLabel SugLvl = new JLabel("0.0");
 	private final JLabel lblChange = new JLabel("Change Reservoir");
 	
+	JButton Start = new JButton("Start");
+	private final JButton End = new JButton("End");
+	private final JButton Reset = new JButton("Reset");
+	private final JLabel Up = new JLabel("");
+	private final JLabel Down = new JLabel("");
+	
 	
 	private void initialize() {
 		frame = new JFrame();
@@ -63,6 +69,56 @@ public class PumpView {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		Image image5 = new ImageIcon(this.getClass().getResource("/resov1.png")).getImage();
+		Reset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Reset System
+			}
+		});
+		Image downimg = new ImageIcon(this.getClass().getResource("/down.png")).getImage();
+		Down.setIcon(new ImageIcon(downimg));
+		Down.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		Down.setBounds(527, 287, 44, 43);
+		
+		frame.getContentPane().add(Down);
+		Image upimg = new ImageIcon(this.getClass().getResource("/up.png")).getImage();
+		Up.setIcon(new ImageIcon(upimg));
+		Up.setIcon(new ImageIcon(upimg));
+		Up.setFont(new Font("Tahoma", Font.PLAIN, 27));
+		Up.setBounds(527, 165, 44, 50);
+		
+		frame.getContentPane().add(Up);
+		Reset.setOpaque(false);
+		Reset.setHorizontalAlignment(SwingConstants.RIGHT);
+		Reset.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Reset.setContentAreaFilled(false);
+		Reset.setBorderPainted(false);
+		Reset.setBounds(393, 277, 77, 62);
+		
+		frame.getContentPane().add(Reset);
+		End.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//End System
+			}
+		});
+		End.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		End.setHorizontalAlignment(SwingConstants.RIGHT);
+		End.setOpaque(false);
+		End.setContentAreaFilled(false);
+		End.setBorderPainted(false);
+		End.setBounds(306, 276, 65, 62);
+		
+		frame.getContentPane().add(End);
+		Start.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//Start System
+			}
+		});
+		
+		Start.setOpaque(false);
+		Start.setContentAreaFilled(false);
+		Start.setBorderPainted(false);
+		Start.setBounds(174, 276, 65, 62);
+		frame.getContentPane().add(Start);
 		insState.setIcon(new ImageIcon(image5));
 		insState.setFont(new Font("Tahoma", Font.PLAIN, 27));
 		insState.setBounds(186, 139, 117, 33);
@@ -108,7 +164,7 @@ public class PumpView {
 		
 		frame.getContentPane().add(CarbsBtn);
 		
-		Image image3 = new ImageIcon(this.getClass().getResource("/res.png")).getImage();
+		Image image3 = new ImageIcon(this.getClass().getResource("/resov1.png")).getImage();
 		Reservoir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -116,7 +172,6 @@ public class PumpView {
 				ResState(100);
 			}
 		});
-		Reservoir.setHorizontalAlignment(SwingConstants.LEFT);
 		Reservoir.setIcon(new ImageIcon(image3));
 		
 		Reservoir.setBounds(15, 16, 125, 50);
@@ -173,6 +228,7 @@ public class PumpView {
 		
 		
 		
+		
 	}
 	
 	public void SetClock(LocalTime time) {
@@ -224,5 +280,4 @@ public class PumpView {
 		}
 		insState.setIcon(new ImageIcon(imageres));
 	}
-	
 }

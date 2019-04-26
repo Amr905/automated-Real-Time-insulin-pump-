@@ -27,13 +27,13 @@ public class InsulinPumpSystem {
 	private int reservoir;
 
 	public InsulinPumpSystem(HumanBody humanBody) {
-
+		this.systemTester = new SystemTester();
 		gui = new PumpView(humanBody);
 		gui.frame.setVisible(true);
 
 		this.clock = new Clock();
 		this.myDisplay = new Display(gui);
-		this.systemTester = new SystemTester();
+		
 		this.sugarMesurment = new SugarMesurment(humanBody);
 		sugerReading = new int[3];
 		readingIndex = 0;

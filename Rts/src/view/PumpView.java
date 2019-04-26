@@ -71,7 +71,16 @@ public class PumpView {
 		BisBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// Config add sugar
+				BtnState(false);
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				human.addSuger(60);
+		
+					
 			}
 		});
 		BisBtn.setBounds(392, 431, 95, 62);
@@ -82,6 +91,7 @@ public class PumpView {
 		CarbsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Config add sugar
+				BtnState(false);
 				human.addSuger(50);
 			}
 		});
@@ -159,6 +169,13 @@ public class PumpView {
 	public void Pumping() {
 		Image image4 = new ImageIcon(this.getClass().getResource("/pump.gif")).getImage();
 		gifimg.setIcon(new ImageIcon(image4));
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		notPumping();
 	}
 	public void notPumping() {
 		Image image4 = new ImageIcon(this.getClass().getResource("/notpump.gif")).getImage();

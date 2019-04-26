@@ -76,9 +76,11 @@ public class InsulinPumpSystem {
 			if (dose != 0) {
 				insulinPumper.pumpInsulin(dose);
 				System.out.println("Dose injected-->" + dose);
+				gui.BtnState(true);
+				gui.Pumping();
 			}
 		}
-
+		
 	}
 
 	private void calcRate() {

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import event.ReservoirEvent;
 import model.HumanBody;
 import model.InsulinPumpSystem;
+import view.PumpView;
 
 public class Main {
 
@@ -19,7 +20,9 @@ public class Main {
 
 		// Register events
 		Config.registerEvents();
+		
 		final HumanBody humanBody = new HumanBody();
+		
 		Thread humanBodyThread = new Thread(humanBody);
 		humanBodyThread.start();
 		final InsulinPumpSystem insulinPumpSystem = new InsulinPumpSystem(humanBody);

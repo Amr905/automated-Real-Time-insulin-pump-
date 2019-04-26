@@ -7,11 +7,13 @@ import java.util.logging.Logger;
 
 import event.*;
 import main.*;
+import view.PumpView;
 
 public class HumanBody implements Runnable {
 
 	private int SugarLevel;
 	private Integer lock;
+	
 
 	public int getSugarLevel() {
 		return SugarLevel;
@@ -19,6 +21,7 @@ public class HumanBody implements Runnable {
 
 	public HumanBody() {
 		SugarLevel = 80;
+		
 	}
 
 	public void raiseSugarLevel() {

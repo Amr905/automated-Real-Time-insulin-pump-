@@ -44,7 +44,7 @@ public class HumanBody implements Runnable {
 		}
 	}
 
-	public  void addInsulin(int insulinValue) {
+	public synchronized void addInsulin(int insulinValue) {
 
 		int currentSugarLevel = this.SugarLevel;
 		while (SugarLevel > currentSugarLevel - insulinValue) {
@@ -59,7 +59,7 @@ public class HumanBody implements Runnable {
 	
 }
 
-	public  void addSuger(int sugarValue) {
+	public synchronized void addSuger(int sugarValue) {
 		int currentSugarLevel = this.SugarLevel;
 		while (SugarLevel < currentSugarLevel + sugarValue) {
 			try {

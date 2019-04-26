@@ -2,13 +2,13 @@ package event;
 
 public class PumpEvent {
 
-	private boolean PumpState;
+	private int insulinvalue;
 
-	public PumpEvent(boolean PumpState) {
-		this.PumpState = PumpState;
+	public PumpEvent(int PumpState) {
+		this.insulinvalue = PumpState;
 	}
 
-	public boolean getPumpState() {
-		return PumpState;
+	public int getInsulinvalue() {
+		return insulinvalue;
 	}
 }

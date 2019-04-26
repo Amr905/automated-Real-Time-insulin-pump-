@@ -101,7 +101,7 @@ public class InsulinPumpSystem {
 		if (reservoir - dose < 0) {
 			dose = reservoir;
 			Config.sendEvent(new DisplayMsgEvent("Out of insulin, reservoir need to be changed"));
-		}F
+		}
 		System.out.println("Dose injected-->" + dose);
 		return dose;
 

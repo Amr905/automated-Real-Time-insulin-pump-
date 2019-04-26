@@ -33,7 +33,6 @@ public class InsulinPumpSystem {
 
 		this.clock = new Clock();
 		this.myDisplay = new Display(gui);
-		this.systemTester = new SystemTester();
 		this.sugarMesurment = new SugarMesurment(humanBody);
 		sugerReading = new int[3];
 		readingIndex = 0;
@@ -46,6 +45,7 @@ public class InsulinPumpSystem {
 		rateDirection = 0;
 		insulinPumper = new InsulinPumper(humanBody);
 		reservoir = 100;
+		this.systemTester = new SystemTester(this);
 	}
 
 	public void Timer(LocalTime time) {
@@ -95,7 +95,7 @@ public class InsulinPumpSystem {
 	}
 
 	private int computeDose() {
-		int dose = (sugerReading[readingIndex] - safeMax)+10;
+		int dose = (sugerReading[readingIndex] - safeMax) + 10;
 		if (dose > maxSingleDose)
 			dose = maxSingleDose;
 		if (computedDose + dose > maxDailyDose)
@@ -106,7 +106,7 @@ public class InsulinPumpSystem {
 			Config.sendEvent(new DisplayMsgEvent("Out of insulin, reservoir need to be changed"));
 		}
 
-		if(dose<0)
+		if (dose < 0)
 			return 0;
 		else
 			return dose;
@@ -132,7 +132,22 @@ public class InsulinPumpSystem {
 	public void displayLastDose(int lastDose) {
 		myDisplay.displayLatestDose(lastDose);
 	}
+
 	public void pumpInsluin(int insulinValue) {
 		insulinPumper.pumpInsulin(insulinValue);
+	}
+
+	public boolean checkPumperSensor() {
+		return insulinPumper.checkSensor();
+	
+	}
+
+	public boolean checkSugerMesurmentSensor() {
+		return sugarMesurment.checkSensor();
+	}
+
+	public boolean checkReservoir() {
+		if(reservoir>0)return true;
+		else return false;
 	}
 }

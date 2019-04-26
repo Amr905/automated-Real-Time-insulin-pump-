@@ -15,4 +15,7 @@ public class InsulinPumper {
 		System.out.println("InsulinPumper--->Pumped--->"+insulinValue);
 		Config.sendEvent(new DisplayLastDose(insulinValue));
 	}
+	public boolean checkSensor() {
+		return true;
+	}
 }

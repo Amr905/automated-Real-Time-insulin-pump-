@@ -11,6 +11,7 @@ import event.ReservoirEvent;
 import model.Clock;
 import model.HumanBody;
 import model.InsulinPumpSystem;
+import model.User;
 import view.PumpView;
 
 public class Main{
@@ -41,6 +42,7 @@ public class Main{
 
 
 		final InsulinPumpSystem insulinPumpSystem = new InsulinPumpSystem(humanBody);
+		User user = new User(insulinPumpSystem);
 
 		Config.createStatement("select clock from DisplayClockEvent").setSubscriber(new Object() {
 			public void update(LocalTime clock) throws InterruptedException {

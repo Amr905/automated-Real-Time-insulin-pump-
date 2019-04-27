@@ -33,19 +33,15 @@ public class HumanBody implements Runnable {
 		SugarLevel -= random(5, 10);
 	}
 
-	public void idle() {
+	public  void idle() {
 		Random r = new Random();
 		int rand = (int) Math.round(Math.random());
-
-		if (SugarLevel >= 100) {
-			SugarLevel -= random(2, 5);
-		} else if (SugarLevel <= 70) {
-			SugarLevel += random(2, 5);
-		} else if (rand == 0) {
+		  if (rand == 0) {
 			SugarLevel += random(2, 5);
 		} else if (rand == 1) {
 			SugarLevel -= random(2, 5);
 		}
+		System.out.println("System Idle-->" + SugarLevel);
 	}
 
 	public synchronized void addInsulin(int insulinValue) {
@@ -82,7 +78,7 @@ public class HumanBody implements Runnable {
 
 			
 			this.idle();
-			System.out.println("System Idle-->" + SugarLevel);
+			
 			try {
 				Thread.sleep(10000);
 			} catch (InterruptedException ex) {

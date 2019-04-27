@@ -21,6 +21,7 @@ import javax.swing.SwingConstants;
 
 import model.HumanBody;
 import model.InsulinPumpSystem;
+import model.User;
 
 public class PumpView {
 
@@ -35,10 +36,12 @@ public class PumpView {
 	 */
 	HumanBody human;
 	InsulinPumpSystem Controller;
+	User user ;
 	public PumpView(HumanBody human,InsulinPumpSystem Controller) {
 		initialize();
 		this.human = human;
 		this.Controller=Controller ;
+		this.user = new User();
 	}
 
 	/**
@@ -77,6 +80,8 @@ public class PumpView {
 		Reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// Reset System
+				LastDose.setText("0");
+				Controller.changeReservoir(true);
 			}
 		});
 		Image downimg = new ImageIcon(this.getClass().getResource("/down.png")).getImage();
@@ -105,9 +110,11 @@ public class PumpView {
 		Reset.setBounds(393, 277, 77, 62);
 		
 		frame.getContentPane().add(Reset);
+		
 		End.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//End System
+				user.EndSystem();
 			}
 		});
 		End.setFont(new Font("Tahoma", Font.PLAIN, 18));

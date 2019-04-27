@@ -43,7 +43,7 @@ public class PumpView {
 	
 	private final JButton BisBtn = new JButton("");
 	private final JButton CarbsBtn = new JButton("");
-	JLabel SysMsg = new JLabel("Loading...");
+	JLabel SysMsg = new JLabel("System Starting...");
 	JLabel LastDose = new JLabel("0.0");
 	LocalTime now = LocalTime.now();
 	LocalTime MyTime = LocalTime.of(now.getHour(), now.getMinute());
@@ -61,6 +61,7 @@ public class PumpView {
 	private final JButton Reset = new JButton("Reset");
 	private final JLabel Up = new JLabel("");
 	private final JLabel Down = new JLabel("");
+	private final JLabel CurSugarLevel= new JLabel("Current Sugar Level:");
 	
 	
 	private void initialize() {
@@ -79,6 +80,11 @@ public class PumpView {
 		Down.setFont(new Font("Tahoma", Font.PLAIN, 27));
 		Down.setBounds(527, 287, 44, 43);
 		
+		CurSugarLevel.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		CurSugarLevel.setBounds(680, 330, 200, 43);
+		frame.getContentPane().add(CurSugarLevel);
+		
+		
 		frame.getContentPane().add(Down);
 		Image upimg = new ImageIcon(this.getClass().getResource("/up.png")).getImage();
 		Up.setIcon(new ImageIcon(upimg));
@@ -89,7 +95,7 @@ public class PumpView {
 		frame.getContentPane().add(Up);
 		Reset.setOpaque(false);
 		Reset.setHorizontalAlignment(SwingConstants.RIGHT);
-		Reset.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		Reset.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Reset.setContentAreaFilled(false);
 		Reset.setBorderPainted(false);
 		Reset.setBounds(393, 277, 77, 62);
@@ -114,10 +120,11 @@ public class PumpView {
 			}
 		});
 		
+		Start.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		Start.setOpaque(false);
 		Start.setContentAreaFilled(false);
 		Start.setBorderPainted(false);
-		Start.setBounds(174, 276, 65, 62);
+		Start.setBounds(165, 276, 80, 62);
 		frame.getContentPane().add(Start);
 		insState.setIcon(new ImageIcon(image5));
 		insState.setFont(new Font("Tahoma", Font.PLAIN, 27));

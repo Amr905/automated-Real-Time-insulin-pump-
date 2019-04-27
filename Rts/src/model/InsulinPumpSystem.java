@@ -123,6 +123,7 @@ public class InsulinPumpSystem {
 			reservoir = 100;
 			System.out.println("resoivir changed"+reservoir);
 			Config.sendEvent(new ResetEvent(true));
+			Config.sendEvent(new DisplayMsgEvent("System Reseted"));
 		}
 	}
 

@@ -13,6 +13,7 @@ public class HumanBody implements Runnable {
 
 	private int SugarLevel;
 	private Integer lock;
+
 	
 
 	public int getSugarLevel() {
@@ -79,6 +80,7 @@ public class HumanBody implements Runnable {
 	public void run() {
 		while (true) {
 
+			
 			this.idle();
 			System.out.println("System Idle-->" + SugarLevel);
 			try {

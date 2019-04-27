@@ -138,7 +138,7 @@ public class InsulinPumpSystem {
 	}
 
 	public void displayLastDose(int lastDose) {
-		myDisplay.displayLatestDose(lastDose);
+		myDisplay.displayLastDose(lastDose);
 	}
 
 	public void pumpInsluin(int insulinValue) {

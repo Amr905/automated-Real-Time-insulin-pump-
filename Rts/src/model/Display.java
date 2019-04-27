@@ -35,7 +35,7 @@ public class Display {
 		GUI.SetMsg(msg);
 	}
 
-	public void displayLatestDose(int LastDose) {
+	public void displayLastDose(int LastDose) {
 		this.lastDose = LastDose;
 		System.out.println("last dose -->"+LastDose);
 		GUI.SetLastDose(LastDose);

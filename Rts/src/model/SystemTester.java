@@ -28,7 +28,7 @@ public class SystemTester {
 						Config.sendEvent(new SystemTesterEvent("Error in insulin pumber sensor"));
 					else if (!insulinPumpSystem.checkReservoir())
 						Config.sendEvent(new SystemTesterEvent("Change Resrvoir"));
-					else if (!insulinPumpSystem.checkSugerMesurmentSensor())
+					else if (!insulinPumpSystem.checkSugarMesurmentSensor())
 						Config.sendEvent(new SystemTesterEvent("Error in sugar mesurment sensor"));
 					else
 						Config.sendEvent(new SystemTesterEvent("OK"));

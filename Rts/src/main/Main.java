@@ -45,12 +45,12 @@ public class Main{
 		Config.createStatement("select clock from DisplayClockEvent").setSubscriber(new Object() {
 			public void update(LocalTime clock) throws InterruptedException {
 				// System.out.println("Clock-->"+clock);
-				insulinPumpSystem.Timer(clock);
+				insulinPumpSystem.displayTime(clock);
 			}
 		});
 		Config.createStatement("select sugarLevel from SugarMeasurementEvent").setSubscriber(new Object() {
 			public void update(int SugarLevel) throws InterruptedException {
-				insulinPumpSystem.saveCurrentSugerMeasure(SugarLevel);
+				insulinPumpSystem.saveCurrentSugarMeasure(SugarLevel);
 			}
 		});
 		Config.createStatement("select systemStatus from SystemTesterEvent").setSubscriber(new Object() {

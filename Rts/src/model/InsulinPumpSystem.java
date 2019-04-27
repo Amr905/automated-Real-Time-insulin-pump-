@@ -14,7 +14,7 @@ public class InsulinPumpSystem {
 	private Display myDisplay;
 	private SugarMesurment sugarMesurment;
 	private SystemTester systemTester;
-	private int[] sugerReading;
+	private int[] sugarReading;
 	private int readingIndex;
 	private int safeMin;
 	private int safeMax;
@@ -34,7 +34,7 @@ public class InsulinPumpSystem {
 		this.clock = new Clock();
 		this.myDisplay = new Display(gui);
 		this.sugarMesurment = new SugarMesurment(humanBody);
-		sugerReading = new int[3];
+		sugarReading = new int[3];
 		readingIndex = 0;
 		safeMin = 70;
 		safeMax = 100;
@@ -48,7 +48,7 @@ public class InsulinPumpSystem {
 		this.systemTester = new SystemTester(this);
 	}
 
-	public void Timer(LocalTime time) {
+	public void displayTime(LocalTime time) {
 		this.myDisplay.displayClock(time);
 	}
 
@@ -68,9 +68,9 @@ public class InsulinPumpSystem {
 
 	}
 
-	private void checkSugerLevel() {
-		if ((sugerReading[readingIndex] > safeMax && rateDirection != -1) || (sugerReading[readingIndex] >= safeMin
-				&& sugerReading[readingIndex] <= safeMax && rateDirection == 1)) {
+	private void checkSugarLevel() {
+		if ((sugarReading[readingIndex] > safeMax && rateDirection != -1) || (sugarReading[readingIndex] >= safeMin
+				&& sugarReading[readingIndex] <= safeMax && rateDirection == 1)) {
 			int dose = computeDose();
 			computedDose += dose;
 			if (dose != 0) {
@@ -87,8 +87,8 @@ public class InsulinPumpSystem {
 	}
 
 	private void calcRate() {
-		int rate1 = sugerReading[2] - sugerReading[1];
-		int rate2 = sugerReading[1] - sugerReading[0];
+		int rate1 = sugarReading[2] - sugarReading[1];
+		int rate2 = sugarReading[1] - sugarReading[0];
 		if (rate1 > rate2)
 			rateDirection = 1;// incr
 		else if (rate1 < rate2)
@@ -100,7 +100,7 @@ public class InsulinPumpSystem {
 	}
 
 	private int computeDose() {
-		int dose = (sugerReading[readingIndex] - safeMax)+10;
+		int dose = (sugarReading[readingIndex] - safeMax)+10;
 		if (dose > maxSingleDose)
 			dose = maxSingleDose;
 		if (computedDose + dose > maxDailyDose)
@@ -127,13 +127,13 @@ public class InsulinPumpSystem {
 		}
 	}
 
-	public void saveCurrentSugerMeasure(int sugerReading) {
-		this.sugerReading[readingIndex] = sugerReading;
-		gui.SetSugLvl(sugerReading);
+	public void saveCurrentSugarMeasure(int sugarReading) {
+		this.sugarReading[readingIndex] = sugarReading;
+		gui.SetSugLvl(sugarReading);
 		if (readingIndex == 2)
 			calcRate();
 
-		checkSugerLevel();
+		checkSugarLevel();
 		readingIndex = (readingIndex + 1) % 3;
 	}
 
@@ -150,7 +150,7 @@ public class InsulinPumpSystem {
 	
 	}
 
-	public boolean checkSugerMesurmentSensor() {
+	public boolean checkSugarMesurmentSensor() {
 		return sugarMesurment.checkSensor();
 	}
 

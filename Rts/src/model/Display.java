@@ -14,7 +14,7 @@ public class Display {
 	private String msg;
 	private LocalTime localTime;
 	private PumpView GUI;
-	Queue <String> Buffer = new LinkedList<String>();
+	private Queue <String> Buffer = new LinkedList<String>();
 
 	public Display(PumpView GUI) {
 		this.lastDose = 0;

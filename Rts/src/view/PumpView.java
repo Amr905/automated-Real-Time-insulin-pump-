@@ -44,7 +44,7 @@ public class PumpView {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	Queue <String> Buffer = new LinkedList<String>();
+	
 	private final JButton BisBtn = new JButton("");
 	private final JButton CarbsBtn = new JButton("");
 	JLabel SysMsg = new JLabel("System Starting...");
@@ -235,29 +235,16 @@ public class PumpView {
 		lblChange.setBounds(15, 69, 125, 27);
 		frame.getContentPane().add(lblChange);
 		
-		int interval = 5000;
-		new Timer(interval, new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		    	if (!Buffer.isEmpty()) {
-		    		String s = Buffer.remove();
-		    		SysMsg.setText(s);
-				}
-		    }
-		}).start();
 		
 	}
 	
-	public void BufferEnq(String Msg) {
-		Buffer.add(Msg);
-	}
+
 	
 	public void SetClock(LocalTime time) {
 		Clock.setText(time.toString());
 	}
 	public void SetMsg(String Msg) {
-		//SysMsg.setText(Msg);
-		BufferEnq(Msg);
+		SysMsg.setText(Msg);
 		
 	}
 	public void SetDebug(String Msg) {

@@ -2,7 +2,10 @@ package model;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import view.PumpView;
 
@@ -10,16 +13,26 @@ public class Display {
 	private int lastDose;
 	private String msg;
 	private LocalTime localTime;
-	private ArrayList<String> bufferMsg;
 	private PumpView GUI;
+	Queue <String> Buffer = new LinkedList<String>();
 
 	public Display(PumpView GUI) {
 		this.lastDose = 0;
 		this.msg = "System Working";
 		this.localTime = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
-		bufferMsg = new ArrayList<>();
+		Buffer = new LinkedList<String>();
 		this.GUI = GUI;
+		Timer t = new Timer( );
+		t.scheduleAtFixedRate(new TimerTask() {
+		    @Override
+		    public void run() {
+		    	if (!Buffer.isEmpty()) {
+		    		String s = Buffer.remove();
+		    		GUI.SetMsg(s);
+				}
 
+		    }
+		},1000,5000);
 	}
 
 	public void displayClock(LocalTime Time) {
@@ -29,12 +42,10 @@ public class Display {
 	}
 
 	public void addMsg(String msg) {
-		bufferMsg.add(msg);
 		this.msg = msg;
 		System.out.println(msg);
-		GUI.SetMsg(msg);
+		Buffer.add(msg);
 	}
-
 	public void displayLastDose(int LastDose) {
 		this.lastDose = LastDose;
 		System.out.println("last dose -->"+LastDose);

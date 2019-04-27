@@ -19,10 +19,10 @@ public class Clock {
 
 				while (true) {
 					LocalTime now = LocalTime.now();
-					LocalTime myTime = LocalTime.of(now.getHour(), now.getMinute());
-					System.out.println("Class Clock ---->"+myTime);
-					Config.sendEvent(new DisplayClockEvent(myTime));
-					if (myTime.toString().equals("00:00")) {
+					LocalTime currentTime = LocalTime.of(now.getHour(), now.getMinute());
+					System.out.println("Class Clock ---->"+currentTime);
+					Config.sendEvent(new DisplayClockEvent(currentTime));
+					if (currentTime.toString().equals("00:00")) {
 						Config.sendEvent(new ResetEvent(true));
 						Config.sendEvent(new DisplayMsgEvent("System Reseted"));
 					}

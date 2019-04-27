@@ -9,6 +9,10 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 import java.time.LocalTime;
+import java.util.LinkedList;
+import java.util.Queue;
+
+import javax.swing.Timer;
 
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -40,7 +44,7 @@ public class PumpView {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	
+	Queue <String> Buffer = new LinkedList<String>();
 	private final JButton BisBtn = new JButton("");
 	private final JButton CarbsBtn = new JButton("");
 	JLabel SysMsg = new JLabel("System Starting...");
@@ -62,7 +66,7 @@ public class PumpView {
 	private final JLabel Up = new JLabel("");
 	private final JLabel Down = new JLabel("");
 	private final JLabel CurSugarLevel= new JLabel("Current Sugar Level:");
-	
+	private Timer timer;
 	
 	private void initialize() {
 		frame = new JFrame();
@@ -229,20 +233,32 @@ public class PumpView {
 		lblChange.setHorizontalAlignment(SwingConstants.CENTER);
 		lblChange.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblChange.setBounds(15, 69, 125, 27);
-		
 		frame.getContentPane().add(lblChange);
 		
+		int interval = 5000;
+		new Timer(interval, new ActionListener() {
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		    	if (!Buffer.isEmpty()) {
+		    		String s = Buffer.remove();
+		    		SysMsg.setText(s);
+				}
+		    }
+		}).start();
 		
-		
-		
-		
+	}
+	
+	public void BufferEnq(String Msg) {
+		Buffer.add(Msg);
 	}
 	
 	public void SetClock(LocalTime time) {
 		Clock.setText(time.toString());
 	}
 	public void SetMsg(String Msg) {
-		SysMsg.setText(Msg);
+		//SysMsg.setText(Msg);
+		BufferEnq(Msg);
+		
 	}
 	public void SetDebug(String Msg) {
 		SysDebug.setText(Msg);
@@ -287,4 +303,7 @@ public class PumpView {
 		}
 		insState.setIcon(new ImageIcon(imageres));
 	}
+	
+
+	
 }

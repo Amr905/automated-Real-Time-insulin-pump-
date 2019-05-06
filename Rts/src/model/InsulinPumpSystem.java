@@ -28,7 +28,7 @@ public class InsulinPumpSystem {
 
 	public InsulinPumpSystem(HumanBody humanBody) {
 
-		gui = new PumpView(humanBody,this);
+		gui = new PumpView(humanBody, this);
 		gui.frame.setVisible(true);
 
 		this.clock = new Clock();
@@ -38,7 +38,7 @@ public class InsulinPumpSystem {
 		readingIndex = 0;
 		safeMin = 70;
 		safeMax = 100;
-		maxDailyDose = 1000;
+		maxDailyDose = 100;
 		maxSingleDose = 60;
 		computedDose = 0;
 		currentRate = 0;
@@ -74,16 +74,16 @@ public class InsulinPumpSystem {
 			int dose = computeDose();
 			computedDose += dose;
 			if (dose != 0) {
-				reservoir-=dose;
+				reservoir -= dose;
 				gui.BtnState(true);
 				gui.Pumping();
 				gui.ResState(reservoir);
 				insulinPumper.pumpInsulin(dose);
 				System.out.println("Dose injected-->" + dose);
-			
+
 			}
 		}
-		
+
 	}
 
 	private void calcRate() {
@@ -100,18 +100,20 @@ public class InsulinPumpSystem {
 	}
 
 	private int computeDose() {
-		int dose = (sugarReading[readingIndex] - safeMax)+10;
+		int dose = (sugarReading[readingIndex] - safeMax) + 10;
 		if (dose > maxSingleDose)
 			dose = maxSingleDose;
-		if (computedDose + dose > maxDailyDose)
+		if (computedDose + dose > maxDailyDose) {
 			dose = maxDailyDose - computedDose;
+			Config.sendEvent(new DisplayMsgEvent("reached max daily dose"));
+		}
 
 		if (reservoir - dose < 0) {
 			dose = reservoir;
 			Config.sendEvent(new DisplayMsgEvent("Out of insulin, reservoir need to be changed"));
 		}
 
-		if(dose<0)
+		if (dose < 0)
 			return 0;
 		else
 			return dose;
@@ -121,7 +123,7 @@ public class InsulinPumpSystem {
 	public void changeReservoir(boolean isChanged) {
 		if (isChanged) {
 			reservoir = 100;
-			System.out.println("resoivir changed"+reservoir);
+			System.out.println("resoivir changed" + reservoir);
 			Config.sendEvent(new ResetEvent(true));
 			Config.sendEvent(new DisplayMsgEvent("System Reseted"));
 		}
@@ -147,7 +149,7 @@ public class InsulinPumpSystem {
 
 	public boolean checkPumperSensor() {
 		return insulinPumper.checkSensor();
-	
+
 	}
 
 	public boolean checkSugarMesurmentSensor() {
@@ -155,19 +157,23 @@ public class InsulinPumpSystem {
 	}
 
 	public boolean checkReservoir() {
-		if(reservoir>0)return true;
-		else return false;
+		if (reservoir > 0)
+			return true;
+		else
+			return false;
 	}
+
 	public void startSytem() {
 		displayMsg("System Started");
 	}
+
 	public void endSystem() {
 		displayMsg("System Ending");
 
 		System.exit(0);
-		
+
 	}
-	
+
 	public void resetSystem() {
 		computedDose = 0;
 		currentRate = 0;

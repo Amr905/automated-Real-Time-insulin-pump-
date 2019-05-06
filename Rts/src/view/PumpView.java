@@ -41,7 +41,7 @@ public class PumpView {
 		initialize();
 		this.human = human;
 		this.Controller=Controller ;
-		this.user = new User();
+		this.user = new User(Controller);
 	}
 
 	/**

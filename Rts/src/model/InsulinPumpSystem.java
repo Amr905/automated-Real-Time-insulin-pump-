@@ -162,8 +162,12 @@ public class InsulinPumpSystem {
 		displayMsg("System Started");
 	}
 	public void endSystem() {
-		displayMsg("System ended");
+		displayMsg("System Ending");
+
+		System.exit(0);
+		
 	}
+	
 	public void resetSystem() {
 		computedDose = 0;
 		currentRate = 0;

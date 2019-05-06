@@ -13,7 +13,7 @@ public class User {
 		
 	}
 	public void EndSystem() {
-		System.exit(0);
+		insulinSystem.endSystem();
 	}
 	
 

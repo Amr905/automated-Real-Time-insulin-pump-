@@ -36,7 +36,10 @@ public class HumanBody implements Runnable {
 	public  void idle() {
 		Random r = new Random();
 		int rand = (int) Math.round(Math.random());
-		  if (rand == 0) {
+		if(SugarLevel<=60) {
+			SugarLevel += random(2, 5);
+		}
+		else if (rand == 0) {
 			SugarLevel += random(2, 5);
 		} else if (rand == 1) {
 			SugarLevel -= random(2, 5);

@@ -57,7 +57,7 @@ public class PumpView {
 	private final JLabel imgback = new JLabel("");
 	JButton Reservoir = new JButton("");
 	JLabel Clock = new JLabel(MyTime.toString());
-	JLabel SysDebug = new JLabel("debug");
+	//JLabel SysDebug = new JLabel("debug");
 	private final JLabel gifimg = new JLabel("");
 	private final JLabel insState = new JLabel("");
 	private final JLabel SugLvl = new JLabel("0.0");
@@ -220,10 +220,10 @@ public class PumpView {
 		frame.getContentPane().add(imgback);
 		
 		
-		SysDebug.setHorizontalAlignment(SwingConstants.CENTER);
-		SysDebug.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		SysDebug.setBounds(15, 448, 356, 34);
-		frame.getContentPane().add(SysDebug);
+		//SysDebug.setHorizontalAlignment(SwingConstants.CENTER);
+		//SysDebug.setFont(new Font("Tahoma", Font.PLAIN, 28));
+		//SysDebug.setBounds(15, 448, 356, 34);
+		//frame.getContentPane().add(SysDebug);
 		
 		Image image4 = new ImageIcon(this.getClass().getResource("/notpump.gif")).getImage();
 		gifimg.setIcon(new ImageIcon(image4));
@@ -254,9 +254,9 @@ public class PumpView {
 		SysMsg.setText(Msg);
 		
 	}
-	public void SetDebug(String Msg) {
+	/*public void SetDebug(String Msg) {
 		SysDebug.setText(Msg);
-	}
+	}*/
 	public void SetLastDose(int LateDose) {
 		LastDose.setText(Integer.toString(LateDose));
 	}

@@ -20,7 +20,7 @@ public class Clock {
 				while (true) {
 					LocalTime now = LocalTime.now();
 					LocalTime currentTime = LocalTime.of(now.getHour(), now.getMinute());
-					System.out.println("Class Clock ---->"+currentTime);
+					System.out.println("Class Clock ---->" + currentTime);
 					Config.sendEvent(new DisplayClockEvent(currentTime));
 					if (currentTime.toString().equals("00:00")) {
 						Config.sendEvent(new ResetEvent(true));

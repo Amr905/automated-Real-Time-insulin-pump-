@@ -12,9 +12,10 @@ public class InsulinPumper {
 
 	public void pumpInsulin(int insulinValue) {
 		humanBody.addInsulin(insulinValue);
-		System.out.println("InsulinPumper--->Pumped--->"+insulinValue);
+		System.out.println("InsulinPumper--->Pumped--->" + insulinValue);
 		Config.sendEvent(new DisplayLastDose(insulinValue));
 	}
+
 	public boolean checkSensor() {
 		return true;
 	}

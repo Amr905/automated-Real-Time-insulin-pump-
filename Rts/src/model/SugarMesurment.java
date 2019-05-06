@@ -8,7 +8,7 @@ import main.Config;
 
 public class SugarMesurment {
 	
-	private boolean flag=true;
+	private boolean flag = true;
 	public SugarMesurment(HumanBody humanBody) {
 		new Thread(new Runnable() {
 			@Override

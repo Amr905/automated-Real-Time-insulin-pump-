@@ -14,7 +14,7 @@ public class Display {
 	private String msg;
 	private LocalTime localTime;
 	private PumpView GUI;
-	private Queue <String> Buffer = new LinkedList<String>();
+	private Queue<String> Buffer = new LinkedList<String>();
 
 	public Display(PumpView GUI) {
 		this.lastDose = 0;
@@ -22,17 +22,17 @@ public class Display {
 		this.localTime = LocalTime.of(LocalTime.now().getHour(), LocalTime.now().getMinute());
 		Buffer = new LinkedList<String>();
 		this.GUI = GUI;
-		Timer t = new Timer( );
+		Timer t = new Timer();
 		t.scheduleAtFixedRate(new TimerTask() {
-		    @Override
-		    public void run() {
-		    	if (!Buffer.isEmpty()) {
-		    		String s = Buffer.remove();
-		    		GUI.SetMsg(s);
+			@Override
+			public void run() {
+				if (!Buffer.isEmpty()) {
+					String s = Buffer.remove();
+					GUI.SetMsg(s);
 				}
 
-		    }
-		},1000,5000);
+			}
+		}, 1000, 5000);
 	}
 
 	public void displayClock(LocalTime Time) {
@@ -46,9 +46,10 @@ public class Display {
 		System.out.println(msg);
 		Buffer.add(msg);
 	}
+
 	public void displayLastDose(int LastDose) {
 		this.lastDose = LastDose;
-		System.out.println("last dose -->"+LastDose);
+		System.out.println("last dose -->" + LastDose);
 		GUI.SetLastDose(LastDose);
 	}
 

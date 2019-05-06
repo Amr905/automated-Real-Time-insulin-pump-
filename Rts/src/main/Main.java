@@ -14,7 +14,7 @@ import model.InsulinPumpSystem;
 import model.User;
 import view.PumpView;
 
-public class Main{
+public class Main {
 
 	public static void main(String[] args) {
 		final HumanBody humanBody = new HumanBody();
@@ -24,22 +24,20 @@ public class Main{
 		Thread main = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				
+
 				Program(humanBody);
 			}
 		});
 		main.start();
-		
 
 	}
-	
+
 	public static void Program(HumanBody humanBody) {
 		// Disable logging
 		Logger.getRootLogger().setLevel(Level.OFF);
 
 		// Register events
 		Config.registerEvents();
-
 
 		final InsulinPumpSystem insulinPumpSystem = new InsulinPumpSystem(humanBody);
 		User user = new User(insulinPumpSystem);
@@ -87,9 +85,5 @@ public class Main{
 			}
 		});
 	}
-
-
-
-	
 
 }
